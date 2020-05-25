@@ -1,4 +1,4 @@
 export const refs = {
-    switchBtn: document.querySelector('.js-switch-input'),
-    body: document.body,
-  };
+  container: document.querySelector('.container'),
+  countries: document.querySelector('#countries'),
+};

@@ -1,9 +1,22 @@
-import data from './menu';
-import dataTemplate from './templates/dataTemplate.hbs';
+import dataListTemplate from './templates/dataListTemplate.hbs';
+// console.log(dataListTemplate());
+import { refs } from './refs';
 
-const addMarkup = () => {
-  const markup = dataTemplate(data);
-  document.querySelector('.js-menu').insertAdjacentHTML('beforeend', markup);
+export const addMarkup = data =>{
+  refs.countries.innerHTML = ''
+  refs.countries.insertAdjacentHTML('beforebegin', dataListTemplate(data));}
+
+export const renderCountryList = data => {
+  const countryList = `
+  <ul class="countryList">
+      ${renderCountryListItem(data)}
+  </ul>
+  `;
+  refs.countries.insertAdjacentHTML('beforeend', countryList);
 };
 
-export default addMarkup;
+const renderCountryListItem = dataArr =>
+  dataArr.reduce(
+    (acc, item) => (acc += `<li class="countryListItem">${item.name}</li>`),'');
+
+//map просто не сработаетю нужен акамулятор
